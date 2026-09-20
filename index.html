@@ -2,6 +2,7 @@
 <html lang="he" dir="rtl" style="background-color:#000000;">
 <head>
 <meta charset="UTF-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#000000">
 <meta name="color-scheme" content="dark">
@@ -9,7 +10,7 @@
 <title>אביב בן ישראל | מאמן מכירות ומיינדסט</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Assistant:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
   --black: #000000;
@@ -31,8 +32,8 @@
   --accent: var(--gold);
   --accent-light: var(--gold-light);
   --accent-dim: var(--gold-dim);
-  --serif: 'Frank Ruhl Libre', serif;
-  --sans: 'Assistant', sans-serif;
+  --serif: 'Heebo', sans-serif;
+  --sans: 'Heebo', sans-serif;
   --r-sm: 10px; --r-md: 18px; --r-lg: 28px; --r-pill: 999px;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -45,7 +46,7 @@ img{max-width:100%; display:block;}
 
 .grain{position:fixed; inset:0; z-index:9999; pointer-events:none; opacity:0.05; mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
-.progress-bar{position:fixed; top:0; right:0; left:0; height:3px; z-index:1001; background:linear-gradient(90deg, var(--accent-dim), var(--accent), var(--accent-light)); width:0%; box-shadow:0 0 12px rgba(196,162,74,0.5);}
+.progress-bar{position:fixed; top:0; right:0; height:3px; z-index:1001; background:linear-gradient(270deg, var(--accent-dim), var(--accent), var(--accent-light)); width:0%; box-shadow:0 0 12px rgba(196,162,74,0.5);}
 .glow-orb{position:absolute; border-radius:50%; pointer-events:none; filter:blur(70px); z-index:0; background:radial-gradient(circle, rgba(196,162,74,0.30), transparent 70%);}
 @media (max-width:560px){.glow-orb{width:300px !important; height:300px !important;}}
 .glow-orb.navy{background:radial-gradient(circle, rgba(38,64,107,0.35), transparent 70%);}
@@ -399,6 +400,12 @@ body.training-page{ --accent: #7C9CD6; --accent-light:#A9C1E6; --accent-dim:#3A4
 .t-hero{padding:150px 5vw 60px; text-align:center;}
 .t-hero h1{font-size:clamp(2.1rem,4vw,3.2rem); color:var(--white); margin-bottom:16px;}
 .t-hero p{color:var(--gray); font-size:1.05rem; max-width:640px; margin:0 auto; font-weight:300;}
+.edu-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:10px;}
+.edu-card{padding:28px 24px; text-align:center;}
+.edu-inst{font-family:var(--serif); color:var(--gold-light); font-size:1.05rem; font-weight:700; margin-bottom:8px;}
+.edu-desc{color:var(--gray); font-size:0.86rem;}
+@media (max-width:980px){.edu-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:560px){.edu-grid{grid-template-columns:1fr;}}
 .testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; max-width:1180px; margin:0 auto; padding:0 5vw 90px;}
 .testi-card{padding:36px 30px; display:flex; flex-direction:column;}
 .testi-card .t-mark{font-family:var(--serif); font-size:2.2rem; color:var(--gold-dim); line-height:1; margin-bottom:14px;}
@@ -479,7 +486,10 @@ body.training-page{ --accent: #7C9CD6; --accent-light:#A9C1E6; --accent-dim:#3A4
       </div>
 
       <div class="hc-controls">
-        <button class="hc-playpause" id="hcPlayPause" aria-label="השהה">⏸</button>
+        <button class="hc-playpause" id="hcPlayPause" aria-label="השהה">
+          <svg id="hcPauseIcon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg>
+          <svg id="hcPlayIcon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M7 4l14 8-14 8z"></path></svg>
+        </button>
         <button class="hc-arrow" id="hcPrev" aria-label="הקודם">›</button>
         <div class="hc-dots" id="hcDots">
           <button class="hc-dot active" data-i="0"></button>
@@ -545,6 +555,20 @@ body.training-page{ --accent: #7C9CD6; --accent-light:#A9C1E6; --accent-dim:#3A4
           <div class="t-row"><div class="t-tag">קפריסין</div><div class="t-desc"><b>סמנכ"ל מכירות</b> בחברת הייטק גדולה — תפקיד שבו שברנו שיאי חברה.</div></div>
           <div class="t-row"><div class="t-tag">המלחמה</div><div class="t-desc">חזרה מקפריסין ב-7 באוקטובר, שירות בלבנון ובעזה, <b>פציעה פיזית ונפשית</b>, פוסט־טראומה מורכבת ודיכאון — ובקשת העזרה שהייתה הרגע האמיץ ביותר שלי.</div></div>
           <div class="t-row"><div class="t-tag">היום</div><div class="t-desc"><b>מאמן, מלווה ומדריך</b> — לבעלי עסקים, אנשי מכירות ואנשים שרוצים להצליח בחיים, תחת שם המותג ״המכירה מתחילה מהראש״.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section tight" style="border-top:1px solid var(--line);">
+      <div class="section-inner">
+        <span class="eyebrow">השכלה והכשרות</span>
+        <h2 style="font-size:1.9rem; color:var(--white); margin-bottom:4px;">איפה למדתי את המקצוע</h2>
+        <div class="rule"></div>
+        <div class="edu-grid reveal-stagger">
+          <div class="card tilt-card reveal-item edu-card"><div class="edu-inst">מכללת OneLife</div><div class="edu-desc">בהנחיית רמי דבורה</div></div>
+          <div class="card tilt-card reveal-item edu-card"><div class="edu-inst">מכללת TOT</div><div class="edu-desc">קואצ׳ינג בהנחיית אלון גל</div></div>
+          <div class="card tilt-card reveal-item edu-card"><div class="edu-inst">מכללת פסגות</div><div class="edu-desc">ייעוץ עסקי</div></div>
+          <div class="card tilt-card reveal-item edu-card"><div class="edu-inst">מכללת אטלס</div><div class="edu-desc">מנטורינג ויזמות</div></div>
         </div>
         <div class="cta-row" style="margin-top:34px;"><a href="#contact-anchor" class="btn btn-gold">אני רוצה לדבר איתך</a></div>
       </div>
@@ -1044,10 +1068,10 @@ body.training-page{ --accent: #7C9CD6; --accent-light:#A9C1E6; --accent-dim:#3A4
         <span class="eyebrow">בקול שלהם</span>
         <h2 style="font-size:1.9rem; color:var(--white); margin-bottom:16px;">המלצות בוידאו</h2>
         <div class="video-grid reveal-stagger">
-          <div class="video-card reveal-item"><iframe src="https://www.youtube.com/embed/TX7yrP40MkU" title="המלצת לקוח" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-card reveal-item"><iframe src="https://www.youtube.com/embed/lU6uJLeb_yQ" title="המלצת לקוח" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-card reveal-item"><iframe src="https://www.youtube.com/embed/l-lSHvg2y-s" title="המלצת לקוח" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-card reveal-item"><iframe src="https://www.youtube.com/embed/RQ4igQa-SvQ" title="המלצת לקוח" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-card reveal-item"><iframe src="https://www.youtube.com/embed/TX7yrP40MkU" title="המלצת לקוח" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-card reveal-item"><iframe src="https://www.youtube.com/embed/lU6uJLeb_yQ" title="המלצת לקוח" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-card reveal-item"><iframe src="https://www.youtube.com/embed/l-lSHvg2y-s" title="המלצת לקוח" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-card reveal-item"><iframe src="https://www.youtube.com/embed/RQ4igQa-SvQ" title="המלצת לקוח" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
         </div>
       </div>
     </div>
@@ -1269,9 +1293,12 @@ if(leadForm){
   prev && prev.addEventListener('click', () => { show(i-1); startTimer(); });
   next && next.addEventListener('click', () => { show(i+1); startTimer(); });
   dots.forEach(d => d.addEventListener('click', () => { show(parseInt(d.dataset.i,10)); startTimer(); }));
+  const pauseIcon = document.getElementById('hcPauseIcon');
+  const playIcon = document.getElementById('hcPlayIcon');
   playPause && playPause.addEventListener('click', () => {
     playing = !playing;
-    playPause.textContent = playing ? '⏸' : '▶';
+    if(pauseIcon) pauseIcon.style.display = playing ? '' : 'none';
+    if(playIcon) playIcon.style.display = playing ? 'none' : '';
     if(playing) startTimer(); else clearInterval(timer);
   });
 
